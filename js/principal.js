@@ -2,35 +2,43 @@ var titulo = document.querySelector('.titulo')
 
 titulo.textContent = 'Rosely Nutricionista'
 
-var paciente = document.querySelector('#primeiro-paciente')
+var pacientes = document.querySelectorAll('.paciente')
 
-var tdPeso = paciente.querySelector('.info-peso')
-var tdAltura = paciente.querySelector('.info-altura')
-var tdImc = paciente.querySelector('.info-imc')
+for (var i = 0; i < pacientes.length; i++) {
+  console.log(pacientes[i])
 
-var peso = tdPeso.textContent
-var altura = tdAltura.textContent
+  var paciente = pacientes[i]
 
-var pesoEValido = true
-var alturaEValido = true
+  var tdPeso = paciente.querySelector('.info-peso')
+  var peso = tdPeso.textContent
 
-if (peso <= 0 || peso >= 1000) {
-  console.log("Peso invalido!");
-  tdPeso.textContent = 'Peso invalido!'
-  pesoEValido = false
+  var tdAltura = paciente.querySelector('.info-altura')
+  var altura = tdAltura.textContent
 
-}
+  var tdImc = paciente.querySelector('.info-imc')
 
-if (altura <= 0 || altura >= 3.0) {
-  console.log("Peso invalido!");
-  tdAltura.textContent = 'Altura invalida!'
-  alturaEValido = false
+  var pesoEValido = true
+  var alturaEValido = true
 
-}
+  if (peso <= 0 || peso >= 1000) {
+    console.log('Peso invalido!')
+    tdPeso.textContent = 'Peso invalido!'
+    pesoEValido = false
+    paciente.classList.add("paciente-invalido")
+  }
 
-if (pesoEValido && alturaEValido) {
-  var imc = peso / (altura * altura) // formula do IMC
-  tdImc.textContent = imc
-} else{
-  tdImc.textContent = "Altura e/ou Peso inválidos";
+  if (altura <= 0 || altura >= 3.0) {
+    console.log('Peso invalido!')
+    tdAltura.textContent = 'Altura invalida!'
+    alturaEValido = false
+    paciente.classList.add("paciente-invalido")
+
+  }
+
+  if (pesoEValido && alturaEValido) {
+    var imc = peso / (altura * altura) // formula do IMC
+    tdImc.textContent = imc.toFixed(2)
+  } else {
+    tdImc.textContent = 'Altura e/ou Peso inválidos'
+  }
 }
