@@ -6,7 +6,7 @@ botaoAdicionar.addEventListener('click', function () {
   var form = document.querySelector('#form-adiciona')
 
   var nome = form.nome.value
-  var altura = form.addEventListener.value
+  var altura = form.altura.value
   var peso = form.peso.value
   var gordura = form.gordura.value
 
@@ -22,11 +22,13 @@ botaoAdicionar.addEventListener('click', function () {
   alturaTd.textContent = altura
   pesoTd.textContent = peso
   gorduraTd.textContent = gordura
+  imcTd.textContent = calculaImc(peso,altura)
 
   pacienteTr.appendChild(nomeTd)
   pacienteTr.appendChild(pesoTd)
   pacienteTr.appendChild(alturaTd)
   pacienteTr.appendChild(gorduraTd)
+  pacienteTr.appendChild(imcTd)
 
   var tabebela = document.querySelector('#tabela-pacientes')
   tabebela.appendChild(pacienteTr)

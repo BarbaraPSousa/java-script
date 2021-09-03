@@ -36,10 +36,16 @@ for (var i = 0; i < pacientes.length; i++) { // pecorrendo a lista e paciente
   }
 
   if (pesoEValido && alturaEValido) {
-    var imc = peso / (altura * altura) // formula do IMC
-    tdImc.textContent = imc.toFixed(2)
+    var imc = calculaImc(peso, altura);
+    tdImc.textContent = imc
   } else {
     tdImc.textContent = 'Altura e/ou Peso inválidos'
   }
 }
 
+function calculaImc(peso,altura) {
+  var imc = 0;
+  imc = peso / (altura * altura) // formula do IMC
+
+  return imc.toFixed(2);
+}
