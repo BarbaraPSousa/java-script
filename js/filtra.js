@@ -7,14 +7,15 @@ campoFiltro.addEventListener('input', function () {
       var paciente = pacientes[i]
       var tdNome = paciente.querySelector('.info-nome')
       var nome = tdNome.textContent
-      if (nome != this.value) {
+      var expressao = new RegExp(this.value, "i") // "i"=> indica caseInsesitive
+      if (!expressao.test(nome)) {
         paciente.classList.add('invisivel')
       } else {
         paciente.classList.remove('invisivel')
       }
     }
   } else {
-    for (var i = 0; i < pacientes.length; i++) { //devolver a lista
+    for (var i = 0; i < pacientes.length; i++) { //devolve a lista
       var paciente = pacientes[i]
       paciente.classList.remove('invisivel')
     }
