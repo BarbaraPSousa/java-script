@@ -5,13 +5,22 @@ botaoAdicionar.addEventListener('click', function () {
 
   xhr.open('GET', 'https://api-pacientes.herokuapp.com/pacientes')
   xhr.addEventListener('load', function () {
-    var resposta = xhr.responseText // string de paciente
-    var pacientes = JSON.parse(resposta) // tranforma string em Array
+    var erroAjax = document.querySelector("#erro-ajax")
 
-    pacientes.forEach(function(paciente) { //monta a tabela com as informações passadas
-      addPacienteNaTabela(paciente)
-    });
-  
+    if (xhr.status == 200) {
+      erroAjax.classList.add("invisivel")
+      var resposta = xhr.responseText // string de paciente
+      var pacientes = JSON.parse(resposta) // tranforma string em Array
+
+      pacientes.forEach(function (paciente) {
+        //monta a tabela com as informações passadas
+        addPacienteNaTabela(paciente)
+      })
+    } else {
+      console.log(xhr.status)
+      console.log(xhr.responseText)
+      erroAjax.classList.remove("invisivel")
+    }
   })
   xhr.send()
 })
